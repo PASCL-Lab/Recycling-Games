@@ -1,0 +1,99 @@
+# Blender 3.1.0 MTL File: 'Trash_pack.blend'
+# www.blender.org
+
+newmtl Appliances_1
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd  Appliances_1_Base_color.png
+map_Ns  Appliances_1_Roughness.png
+map_refl  Appliances_1_Metallic.png
+map_Bump  -bm 1.000000 Appliances_1_Normal_OpenGL.png
+
+newmtl Cardboard_box
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd  Cardboard_box_Base_color.png
+map_Ns  Cardboard_box_Roughness.png
+map_Bump  -bm 1.000000 Cardboard_box_Normal_OpenGL.png
+
+newmtl Garbage_1
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd  Garbage_1_Base_color.png
+map_Ns  Garbage_1_Roughness.png
+map_refl  Garbage_1_Metallic.png
+map_Bump  -bm 1.000000 Garbage_1_Normal_OpenGL.png
+
+newmtl Garbage_2
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd  Garbage_2_Base_color.png
+map_Ns  Garbage_2_Roughness.png
+map_d  Garbage_2_Opacity.png
+map_refl  Garbage_2_Metallic.png
+map_Bump  -bm 1.000000 Garbage_2_Normal_OpenGL.png
+
+newmtl Garbage_3
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd  Garbage_3_Base_color.png
+map_Ns  Garbage_3_Roughness.png
+map_refl  Garbage_3_Metallic.png
+map_Bump  -bm 1.000000 Garbage_3_Normal_OpenGL.png
+
+newmtl Paint_can
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd  Paint_can_Base_color.png
+map_Ns  Paint_can_Roughness.png
+map_refl  Paint_can_Metallic.png
+map_Bump  -bm 1.000000 Paint_can_Normal_OpenGL.png
+
+newmtl Trash_bags
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd  Trash_bags_Base_color.png
+map_Ns  Trash_bags_Roughness.png
+map_Bump  -bm 1.000000 Trash_bags_Normal_OpenGL.png
