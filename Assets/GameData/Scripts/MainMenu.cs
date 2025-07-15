@@ -10,6 +10,22 @@ public class MainMenu : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TMP_InputField nameInputField;
     private const string PlayerNameKey = "PlayerName";
+    public GameObject NamePanel;
+
+    private void Awake()
+    {
+        if (!PlayerPrefs.HasKey("HasPlayedBefore"))
+        {
+            NamePanel.SetActive(true);
+
+            PlayerPrefs.SetInt("HasPlayedBefore", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            NamePanel.SetActive(false);
+        }
+    }
     private void Start()
     {
         if (PlayerPrefs.HasKey("PlayerName"))
@@ -35,7 +51,8 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.Save();
             Debug.Log("Player Name Saved: " + playerName);
             SetPlayerDisplayName(playerName);
-            namePanel.SetActive(false);
+            UIPopup uIPopup = namePanel.GetComponent<UIPopup>();
+            uIPopup.HidePopup();
         }
         else
         {
@@ -47,7 +64,8 @@ public class MainMenu : MonoBehaviour
 
         if (PlayerPrefs.HasKey("PlayerName"))
         {
-            namePanel.SetActive(false);
+            UIPopup uIPopup = namePanel.GetComponent<UIPopup>();
+            uIPopup.HidePopup();
             Debug.Log("Name panel closed");
         }
         else
@@ -104,6 +122,14 @@ public class MainMenu : MonoBehaviour
     public void ButtonClick()
     {
         AudioManager.Instance.PlaySound(0);
+    }
+    public void ToggleMuteSound()
+    {
+        AudioManager.Instance.ToggleSFXMute();
+    }
+    public void ToggleMuteMusic()
+    {
+        AudioManager.Instance.ToggleBGMusicMute();
     }
 
 }

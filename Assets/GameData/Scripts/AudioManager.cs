@@ -14,7 +14,9 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton pattern — one AudioManager instance across scenes
+        AudioSource[] sources = GetComponents<AudioSource>();
+        bgMusicSource = sources[0];
+        sfxSource = sources[1];
         if (Instance == null)
         {
             Instance = this;
@@ -27,9 +29,6 @@ public class AudioManager : MonoBehaviour
         PlayBGMusic(true);
     }
 
-    /// <summary>
-    /// Play a sound effect from the audio clip list by index
-    /// </summary>
     public void PlaySound(int index)
     {
         if (index >= 0 && index < audioClips.Count)
@@ -42,30 +41,25 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Mute or unmute the background music
-    /// </summary>
-    public void ToggleBGMusicMute(bool isMuted)
+    public void ToggleBGMusicMute()
     {
-        if (bgMusicSource != null)
-            bgMusicSource.mute = isMuted;
+        if (bgMusicSource.mute)
+            bgMusicSource.mute = false;
+        else
+            bgMusicSource.mute = true;
     }
 
-    /// <summary>
-    /// Mute or unmute all other sounds (sound effects)
-    /// </summary>
-    public void ToggleSFXMute(bool isMuted)
+    public void ToggleSFXMute()
     {
-        if (sfxSource != null)
-            sfxSource.mute = isMuted;
+        if (sfxSource.mute)
+            sfxSource.mute = false;
+        else
+            sfxSource.mute = true;
     }
 
-    /// <summary>
-    /// Optional: Play background music if assigned and not already playing
-    /// </summary>
     public void PlayBGMusic( bool loop = true)
     {
-        if (bgMusicSource != null)
+        if (bgMusicSource != null && ! bgMusicSource.mute)
         {
             //bgMusicSource.clip = clip;
             bgMusicSource.loop = loop;

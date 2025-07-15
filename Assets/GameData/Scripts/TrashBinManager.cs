@@ -162,7 +162,10 @@ public class TrashBinManager : MonoBehaviour
     {
         foreach (TrashBins bin in list)
         {
-            bin.transform.DOLocalMoveX((bin.transform.localPosition.x - distanceBetweenBins), 1.5f);
+            bin.transform.DOLocalRotate(new Vector3(-12, -90, 0), 0.2f);
+            bin.transform.DOLocalMoveX((bin.transform.localPosition.x - distanceBetweenBins), 0.5f).OnComplete(()=>{
+                bin.transform.DOLocalRotate(new Vector3(0, -90, 0), 0.2f);
+            });
         }
     }
     public List<List<T>> SplitIntoBatches<T>(List<T> source, int batchSize)

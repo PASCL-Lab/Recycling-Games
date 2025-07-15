@@ -1667,12 +1667,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
+  m_fontSize: 15
   m_fontSizeBase: 13
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 12
+  m_fontSizeMax: 15
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3339,12 +3339,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 15
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 12
+  m_fontSizeMax: 15
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -4542,7 +4542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textTimer: {fileID: 1245337936}
   timerStart: 0
-  timevalue: 400
+  timevalue: 300
   cam: {fileID: 330585545}
 --- !u!1 &711502826
 GameObject:
@@ -5175,10 +5175,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1269635895}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1269635899}
+        m_TargetAssemblyTypeName: UIPopup, Assembly-CSharp
+        m_MethodName: HidePopup
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6103,6 +6103,7 @@ GameObject:
   - component: {fileID: 1000036317}
   - component: {fileID: 1000036319}
   - component: {fileID: 1000036318}
+  - component: {fileID: 1000036320}
   m_Layer: 5
   m_Name: WinPanel
   m_TagString: Untagged
@@ -6168,6 +6169,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000036316}
   m_CullTransparentMesh: 1
+--- !u!114 &1000036320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000036316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41542c024f36e7d4ea6cc37a338b879e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupDuration: 0.4
+  hideDuration: 0.3
+  popupEase: 27
+  hideEase: 26
 --- !u!1 &1003659397
 GameObject:
   m_ObjectHideFlags: 0
@@ -7229,12 +7246,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 55
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 55
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -7292,6 +7309,7 @@ GameObject:
   - component: {fileID: 1171914853}
   - component: {fileID: 1171914855}
   - component: {fileID: 1171914854}
+  - component: {fileID: 1171914856}
   m_Layer: 5
   m_Name: LosePanel
   m_TagString: Untagged
@@ -7357,6 +7375,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171914852}
   m_CullTransparentMesh: 1
+--- !u!114 &1171914856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171914852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41542c024f36e7d4ea6cc37a338b879e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupDuration: 0.4
+  hideDuration: 0.3
+  popupEase: 27
+  hideEase: 26
 --- !u!224 &1178524391 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1922155656426699402, guid: ffe94f3e3c5c048738dcf6f22d902ca4, type: 3}
@@ -7699,6 +7733,7 @@ GameObject:
   - component: {fileID: 1268009351}
   - component: {fileID: 1268009353}
   - component: {fileID: 1268009352}
+  - component: {fileID: 1268009354}
   m_Layer: 5
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -7764,6 +7799,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268009350}
   m_CullTransparentMesh: 1
+--- !u!114 &1268009354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268009350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41542c024f36e7d4ea6cc37a338b879e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupDuration: 0.4
+  hideDuration: 0.3
+  popupEase: 27
+  hideEase: 26
 --- !u!1 &1269635895
 GameObject:
   m_ObjectHideFlags: 0
@@ -7775,6 +7826,7 @@ GameObject:
   - component: {fileID: 1269635896}
   - component: {fileID: 1269635898}
   - component: {fileID: 1269635897}
+  - component: {fileID: 1269635899}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -7840,6 +7892,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269635895}
   m_CullTransparentMesh: 1
+--- !u!114 &1269635899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269635895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41542c024f36e7d4ea6cc37a338b879e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupDuration: 0.4
+  hideDuration: 0.3
+  popupEase: 27
+  hideEase: 26
 --- !u!1 &1276573262
 GameObject:
   m_ObjectHideFlags: 0
@@ -9565,12 +9633,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 15
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 12
+  m_fontSizeMax: 15
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -12028,10 +12096,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268009350}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1268009354}
+        m_TargetAssemblyTypeName: UIPopup, Assembly-CSharp
+        m_MethodName: HidePopup
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12701,12 +12769,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
+  m_fontSize: 15
   m_fontSizeBase: 13
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 12
+  m_fontSizeMax: 15
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -12839,12 +12907,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 15
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 12
+  m_fontSizeMax: 15
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

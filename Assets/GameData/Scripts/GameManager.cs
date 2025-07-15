@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -26,13 +27,21 @@ public class GameManager : MonoBehaviour
     public void SortComplete()
     {
         scoreManager.CheckHighScore();
+        StartCoroutine(DelayedExecution());
+    }
+
+    IEnumerator DelayedExecution()
+    {
+        yield return new WaitForSeconds(1.2f);
         uIManager.winPanel.SetActive(true);
+        AudioManager.Instance.PlaySound(8);
         uIManager.PauseAction(0);
     }
 
     public void SortFailed()
     {
         uIManager.losePanel.SetActive(true);
+        AudioManager.Instance.PlaySound(7);
         uIManager.PauseAction(0);
     }
 

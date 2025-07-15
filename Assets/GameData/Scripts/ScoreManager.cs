@@ -1,3 +1,4 @@
+using DG.Tweening;
 using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
@@ -31,6 +32,7 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore += amount;
         UpdateScoreUI();
+        BlinkTextColor(Color.green, scoreText);
     }
 
     public void DecrementScore(int amount)
@@ -38,6 +40,19 @@ public class ScoreManager : MonoBehaviour
         currentScore -= amount;
         if (currentScore < 0) currentScore = 0;
         UpdateScoreUI();
+        BlinkTextColor(Color.red, scoreText);
+    }
+    public void BlinkTextColor(Color blinkColor, TextMeshProUGUI targetText, float blinkDuration = 0.2f)
+    {
+        if (targetText == null) return;
+        Color originalColor = targetText.color;
+        DOTween.Kill(targetText);
+        targetText.DOColor(blinkColor, blinkDuration)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                targetText.DOColor(originalColor, blinkDuration).SetEase(Ease.Linear);
+            });
     }
 
     public void CheckHighScore()

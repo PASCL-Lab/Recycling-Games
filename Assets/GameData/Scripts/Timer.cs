@@ -38,6 +38,7 @@ public class Timer : MonoBehaviour
     }
     IEnumerator ShakeCamera()
     {
+        AudioManager.Instance.PlaySound(4);
         Vector3 originalpos = cam.transform.position;
         float elapsedTime = 0;
         while (elapsedTime < 0.2f)

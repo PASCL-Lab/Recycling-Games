@@ -53,7 +53,6 @@ public class PickUpManager : MonoBehaviour
 
         for (int i = 1; i <= listOfShelfPoints.Count; i++)
         {
-            Debug.Log(i);
             if (itemIndex >= itemsList.Count) break;
             GameObject itemObj = Instantiate(itemsList[itemIndex]);
             TrashItems item = itemObj.GetComponent<TrashItems>();
@@ -76,7 +75,6 @@ public class PickUpManager : MonoBehaviour
             GameObject itemObj = Instantiate(itemsList[itemIndex]);
             TrashItems item = itemObj.GetComponent<TrashItems>();
             item.transform.position = new Vector3(0f, 10f, -11.5f);
-            Debug.Log(itemIndex);
             //item.transform.DOLocalMove(Vector3.zero, 1f).SetDelay(startValue * Mathf.Pow(growthRate, i)).OnComplete(() => { item.currentPos = transform.localPosition; });
             item.transform.localScale = Vector3.one;
             backgroundItemsList.Add(item);

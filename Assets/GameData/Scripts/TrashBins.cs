@@ -12,18 +12,19 @@ public class TrashBins : MonoBehaviour
     public TextMeshProUGUI text;
     public IEnumerator OpenBin()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.7f);
+        AudioManager.Instance.PlaySound(6);
         transform.DOLocalRotate(new Vector3(0, 0, 0), 0.5f)
             .OnComplete(() =>
             {
-                Lid.transform.DOLocalRotate(new Vector3(-100f, 0, 0), 0.2f).OnComplete(() => { transform.GetComponent<Collider>().enabled = true; });
+                Lid.transform.DOLocalRotate(new Vector3(-100f, 0, 0), 0.2f).SetEase(Ease.OutBounce).OnComplete(() => { transform.GetComponent<Collider>().enabled = true; });
             });
 
     }
     public void CloseBin()
     {
-        Lid.transform.DOLocalRotate(new Vector3(0f, 0, 0), 0.2f).OnComplete(() => {
-            transform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f).OnComplete(() => { transform.DOLocalMoveX(-5f,1f); });
-        });
+        Lid.transform.DOLocalRotate(new Vector3(0f, 0, 0), 0.2f);
+        AudioManager.Instance.PlaySound(5);
+        transform.DOLocalRotate(new Vector3(0, -90f, 0), 0.2f).OnComplete(() => { transform.DOLocalMoveX(-5f, 1f); });
     }
 }
