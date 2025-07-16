@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        pickUpManager.GenerateItems();
     }
 
     public void SortComplete()

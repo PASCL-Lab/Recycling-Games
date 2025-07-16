@@ -19,7 +19,7 @@ public class PickUpManager : MonoBehaviour
     public int itemIndex = 0;
     int nextItemIndex = 0;
 
-    private void Awake()
+    public void GenerateItems()
     {
         itemCount = 10;
         CalculateNumberOfItems();
