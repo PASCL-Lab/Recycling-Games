@@ -16,7 +16,7 @@ public class TrashBinManager : MonoBehaviour
     public float distanceBetweenBins = 1.5f;
 
     
-    void Start()
+    public void GenerateBins()
     {
         if (GameManager.Instance == null || GameManager.Instance.pickUpManager == null)
         {

@@ -11,8 +11,18 @@ public class Timer : MonoBehaviour
     public float timevalue = 120f;
     public Camera cam;
     bool done = true;
+
+    private const float BaseTime = 180f;
+    private const float TimePerLevel = 60f;
+
+    public static float GetTimeForLevel(int level)
+    {
+        return BaseTime + (level - 1) * TimePerLevel;
+    }
     private void Start()
     {
+        int level = GameManager.Instance.GetLevel();
+        timevalue = GetTimeForLevel(level);
         DispayTimer(timevalue);
     }
     private void Update()

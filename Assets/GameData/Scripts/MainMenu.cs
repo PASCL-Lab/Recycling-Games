@@ -38,7 +38,14 @@ public class MainMenu : MonoBehaviour
         //if (scoreText != null)
         //    scoreText.text = "Score: " + highScore;
     }
+    private const string LevelKey = "LevelNumber";
     public void StartGame()
+    {
+        PlayerPrefs.DeleteKey(LevelKey);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("GarbageSorting");
+    }
+    public void Continue()
     {
         SceneManager.LoadScene("GarbageSorting");
     }

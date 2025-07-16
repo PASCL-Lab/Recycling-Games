@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public Timer timer;
     [HideInInspector] public bool gamePaused;
 
+    private const string LevelKey = "LevelNumber";
+
     private void Awake()
     {
         gamePaused = false;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void SortComplete()
     {
+        IncrementLevel();
         scoreManager.CheckHighScore();
         StartCoroutine(DelayedExecution());
     }
@@ -43,6 +46,26 @@ public class GameManager : MonoBehaviour
         uIManager.losePanel.SetActive(true);
         AudioManager.Instance.PlaySound(7);
         uIManager.PauseAction(0);
+    }
+
+    
+    public int GetLevel()
+    {
+        return PlayerPrefs.GetInt(LevelKey,1);
+    }
+
+    public void IncrementLevel()
+    {
+        int currentLevel = GetLevel();
+        currentLevel++;
+        PlayerPrefs.SetInt(LevelKey, currentLevel);
+        PlayerPrefs.Save();
+    }
+
+    public void ResetLevel()
+    {
+        PlayerPrefs.DeleteKey(LevelKey);
+        PlayerPrefs.Save();
     }
 
 
