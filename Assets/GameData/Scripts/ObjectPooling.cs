@@ -4,11 +4,11 @@ public class ObjectPooling : MonoBehaviour
 {
     [SerializeField]
     GameObject[] SelectionPrefab;
-    GameObject[] SelectionPool = new GameObject[40];
-    GameObject[] activeObjects = new GameObject[20];
+    GameObject[] SelectionPool = new GameObject[20];
+    GameObject[] activeObjects = new GameObject[15];
     public Transform PlayerTransform;
     WaitForSeconds waitfor100ms = new WaitForSeconds(0.1f);
-    const float SelectionLength = 10f;
+    public float SelectionLength = 30f;
     
     void Start()
     {
