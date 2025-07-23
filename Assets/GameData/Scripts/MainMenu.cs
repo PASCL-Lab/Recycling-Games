@@ -17,9 +17,6 @@ public class MainMenu : MonoBehaviour
         if (!PlayerPrefs.HasKey("HasPlayedBefore"))
         {
             NamePanel.SetActive(true);
-
-            PlayerPrefs.SetInt("HasPlayedBefore", 1);
-            PlayerPrefs.Save();
         }
         else
         {
@@ -60,6 +57,11 @@ public class MainMenu : MonoBehaviour
             SetPlayerDisplayName(playerName);
             UIPopup uIPopup = namePanel.GetComponent<UIPopup>();
             uIPopup.HidePopup();
+            if (!PlayerPrefs.HasKey("HasPlayedBefore"))
+            {
+                PlayerPrefs.SetInt("HasPlayedBefore", 1);
+                PlayerPrefs.Save();
+            }
         }
         else
         {

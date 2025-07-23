@@ -150,8 +150,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectionPrefab:
   - {fileID: 1360386938583638994, guid: ba8695869b2e6d74db3f29f3c3baada8, type: 3}
+  - {fileID: 4867457223882244945, guid: ecf3f0d05cd7702459a5a3ab6a0304fb, type: 3}
+  - {fileID: 7291171618369744600, guid: 4a414102809fe254bbcdd6fc90a59d7b, type: 3}
+  - {fileID: 5261755965253264667, guid: 8a1fb00c0778060479e56c6c2dd21d36, type: 3}
+  - {fileID: 8066102626840216574, guid: 3010607b93085d1409934a73e07e4314, type: 3}
   PlayerTransform: {fileID: 1008684852}
-  SelectionLength: 10
+  SelectionLength: 20
 --- !u!4 &13995126
 Transform:
   m_ObjectHideFlags: 0
