@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public TMP_InputField nameInputField;
     private const string PlayerNameKey = "PlayerName";
     public GameObject NamePanel;
+    private const string TotalScoreKey = "TotalScore";
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         PlayerPrefs.DeleteKey(LevelKey);
+        PlayerPrefs.DeleteKey(TotalScoreKey);
         PlayerPrefs.Save();
         SceneManager.LoadScene("GarbageSorting");
     }

@@ -16,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     private int highScore = 0;
 
     private const string HighScoreKey = "HighScore";
+    private const string TotalScoreKey = "TotalScore";
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class ScoreManager : MonoBehaviour
             nameText.text = savedName;
         }
         highScore = PlayerPrefs.GetInt(HighScoreKey, 0);
+        currentScore = PlayerPrefs.GetInt(TotalScoreKey, 0); 
         UpdateScoreUI();
     }
 
@@ -57,6 +59,7 @@ public class ScoreManager : MonoBehaviour
 
     public void CheckHighScore()
     {
+        PlayerPrefs.SetInt(TotalScoreKey, currentScore);
         if (currentScore > highScore)
         {
             highScore = currentScore;

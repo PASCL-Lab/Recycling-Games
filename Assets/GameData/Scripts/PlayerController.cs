@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject playerCamera;
-    public Animator animator;
+    [SerializeField] public GameObject Player;
+    [SerializeField] public GameObject playerCamera;
+    [SerializeField] public Animator animator;
     public float characterSpeed = 2f;
     public float laneTransitionSpeed = 0.3f;
     public float rotationEffect = 15f;
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeLane(float position, float rotate, float faceRotation, float cameraPos)
     {
-        playerCamera.transform.DOMoveX(cameraPos, laneTransitionSpeed);
+        //playerCamera.transform.DOMoveX(cameraPos, laneTransitionSpeed);
         Player.transform.DOMoveX(position, laneTransitionSpeed);
         Player.transform.DORotate(new Vector3(0, faceRotation, rotate), laneTransitionSpeed / 2).OnComplete(
             () =>

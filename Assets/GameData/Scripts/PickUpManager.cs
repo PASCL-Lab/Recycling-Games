@@ -1,5 +1,4 @@
 using DG.Tweening;
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,136 +6,209 @@ using UnityEngine;
 
 public class PickUpManager : MonoBehaviour
 {
-    int itemCount;
-    public List<PlaceHolder> listofShelfPoints1;
-    public List<PlaceHolder> listofShelfPoints2;
-    public List<PlaceHolder> listofShelfPoints3;
-    public List<PlaceHolder> listofShelfPoints4;
-    public TrashItemLibrary trashItemLibrary;
-    public List<GameObject> pickUpsList;
-    [SerializeField] TextMeshProUGUI itemNumber;
-    [SerializeField] TextMeshProUGUI levelNo;
-    public int itemIndex = 0;
-    int nextItemIndex = 0;
+    #region Serialized Fields
+    [SerializeField] private List<PlaceHolder> listofShelfPoints1;
+    [SerializeField] private List<PlaceHolder> listofShelfPoints2;
+    [SerializeField] private List<PlaceHolder> listofShelfPoints3;
+    [SerializeField] private List<PlaceHolder> listofShelfPoints4;
+    [SerializeField] private TrashItemLibrary trashItemLibrary;
+    [SerializeField] private TextMeshProUGUI itemNumber;
+    [SerializeField] private TextMeshProUGUI levelNo;
+    #endregion
 
+    #region Private Fields
+    public List<GameObject> pickUpsList;
+    private List<TrashItems> backgroundItemsList;
+    private int itemCount = 10;
+    private int itemIndex = 0;
+    private int nextItemIndex = 0;
+    private const float initialYPosition = 5f;
+    private const float animationDuration = 1f;
+    private const float itemSpacingDelay = 0.3f;
+    private const float growthRate = 1.1f;
+    #endregion
+
+    #region Public Methods
     public void GenerateItems()
     {
-        itemCount = 10;
+        if (!IsSetupValid()) return;
+
         CalculateNumberOfItems();
         SetUI();
-        pickUpsList = new List<GameObject>();
-        pickUpsList.AddRange(trashItemLibrary.recyclablePrefabs);
-        pickUpsList.AddRange(trashItemLibrary.organicPrefabs);
-        pickUpsList.AddRange(trashItemLibrary.ewastePrefabs);
-        pickUpsList.AddRange(trashItemLibrary.garbagePrefabs);
-        pickUpsList = GenerateRandomizedList(pickUpsList, itemCount);
-        GameManager.Instance.trashBinManager.ShuffleList(pickUpsList);
+
+        pickUpsList = GenerateShuffledItemList(itemCount);
         InstantiatePickUpsToSort();
+
         GameManager.Instance.trashBinManager.GenerateBins();
     }
-    void SetUI()
+    #endregion
+
+    #region Private Methods
+    private bool IsSetupValid()
     {
-        itemNumber.text = "Items\n" + itemCount;
-        levelNo.text = "Lvl. " + GameManager.Instance.GetLevel();
-    }
-    void CalculateNumberOfItems()
-    {
-        int levelNumber = GameManager.Instance.GetLevel();
-        for (int i = 0; i < levelNumber; i++) {
-            itemCount += 10;
-        }
-        Debug.Log(itemCount);
-    }
-    public void InstantiatePickUpsToSort()
-    {
-        if (listofShelfPoints1 == null)
+        if (trashItemLibrary == null)
         {
-            Debug.LogError("listofShelfPoints1 is null!");
+            Debug.LogError("TrashItemLibrary not assigned!");
+            return false;
         }
-        if (pickUpsList == null)
+
+        if (itemNumber == null || levelNo == null)
         {
-            Debug.LogError("pickup is null!");
+            Debug.LogError("UI Text references not assigned!");
+            return false;
         }
-        Debug.Log("Total pickUpsList count: " + pickUpsList.Count);
-        StartCoroutine(SpawnInitialItems(listofShelfPoints1, pickUpsList));
-        StartCoroutine(SpawnInitialItems(listofShelfPoints2, pickUpsList));
-        StartCoroutine(SpawnInitialItems(listofShelfPoints3, pickUpsList));
-        StartCoroutine(SpawnInitialItems(listofShelfPoints4, pickUpsList));
+
+        if (GameManager.Instance == null || GameManager.Instance.trashBinManager == null)
+        {
+            Debug.LogError("GameManager or TrashBinManager is not initialized!");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void SetUI()
+    {
+        itemNumber.text = $"Items\n{itemCount}";
+        levelNo.text = $"Lvl. {GameManager.Instance.GetLevel()}";
+    }
+
+    private void CalculateNumberOfItems()
+    {
+        int level = GameManager.Instance.GetLevel();
+        itemCount += 10 * level;
+        Debug.Log($"Calculated item count: {itemCount}");
+    }
+
+    private List<GameObject> GenerateShuffledItemList(int count)
+    {
+        List<GameObject> items = new List<GameObject>();
+
+        items.AddRange(trashItemLibrary.recyclablePrefabs);
+        items.AddRange(trashItemLibrary.organicPrefabs);
+        items.AddRange(trashItemLibrary.ewastePrefabs);
+        items.AddRange(trashItemLibrary.garbagePrefabs);
+
+        items = GenerateRandomizedList(items, count);
+        GameManager.Instance.trashBinManager.ShuffleList(items);
+
+        return items;
+    }
+
+    private void InstantiatePickUpsToSort()
+    {
         backgroundItemsList = new List<TrashItems>();
-        StartCoroutine(SpawnOtherItems(pickUpsList));
+
+        StartCoroutine(SpawnInitialItems(listofShelfPoints1));
+        StartCoroutine(SpawnInitialItems(listofShelfPoints2));
+        StartCoroutine(SpawnInitialItems(listofShelfPoints3));
+        StartCoroutine(SpawnInitialItems(listofShelfPoints4));
+        StartCoroutine(SpawnOtherItems());
     }
-    public IEnumerator SpawnInitialItems(List<PlaceHolder> listOfShelfPoints, List<GameObject> itemsList)
+
+    private IEnumerator SpawnInitialItems(List<PlaceHolder> shelfPoints)
     {
         yield return null;
-        float startValue = 0.3f;
-        float growthRate = 1.1f;
 
-        for (int i = 1; i <= listOfShelfPoints.Count; i++)
+        if (shelfPoints == null || pickUpsList == null)
         {
-            if (itemIndex >= itemsList.Count) break;
-            GameObject itemObj = Instantiate(itemsList[itemIndex]);
+            Debug.LogError("SpawnInitialItems: ShelfPoints or PickUpsList is null!");
+            yield break;
+        }
+
+        for (int i = 0; i < shelfPoints.Count && itemIndex < pickUpsList.Count; i++)
+        {
+            PlaceHolder point = shelfPoints[i];
+            if (point == null) continue;
+
+            GameObject itemObj = Instantiate(pickUpsList[itemIndex]);
+            if (itemObj == null) continue;
+
             TrashItems item = itemObj.GetComponent<TrashItems>();
-            item.transform.SetParent(listOfShelfPoints[i - 1].transform);
-            item.transform.localPosition = new Vector3(0f, 5f, 0f);
-            item.transform.DOLocalMove(Vector3.zero, 1f).SetDelay(startValue * Mathf.Pow(growthRate, i)).OnComplete(() => { item.currentPos = transform.localPosition; });
-            //item.transform.localPosition = Vector3.zero;
-            //item.currentPos = transform.localPosition;
+            if (item == null)
+            {
+                Debug.LogError($"Item prefab missing TrashItems component: {itemObj.name}");
+                Destroy(itemObj);
+                continue;
+            }
+
+            item.transform.SetParent(point.transform);
+            item.transform.localPosition = new Vector3(0f, initialYPosition, 0f);
+            item.transform.DOLocalMove(Vector3.zero, animationDuration)
+                         .SetDelay(itemSpacingDelay * Mathf.Pow(growthRate, i + 1));
             item.transform.localScale = Vector3.one;
+
             itemIndex++;
         }
-        //nextItemIndex = itemIndex;
     }
-    public IEnumerator SpawnOtherItems(List<GameObject> itemsList)
+
+    private IEnumerator SpawnOtherItems()
     {
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("ItemIndex" + itemIndex);
-        for (; itemIndex < itemsList.Count; itemIndex++)
+
+        for (; itemIndex < pickUpsList.Count; itemIndex++)
         {
-            GameObject itemObj = Instantiate(itemsList[itemIndex]);
+            GameObject itemObj = Instantiate(pickUpsList[itemIndex]);
+            if (itemObj == null) continue;
+
             TrashItems item = itemObj.GetComponent<TrashItems>();
+            if (item == null)
+            {
+                Debug.LogError("Missing TrashItems component on background object");
+                Destroy(itemObj);
+                continue;
+            }
+
             item.transform.position = new Vector3(0f, 10f, -11.5f);
-            //item.transform.DOLocalMove(Vector3.zero, 1f).SetDelay(startValue * Mathf.Pow(growthRate, i)).OnComplete(() => { item.currentPos = transform.localPosition; });
             item.transform.localScale = Vector3.one;
+
             backgroundItemsList.Add(item);
         }
     }
-    List<TrashItems> backgroundItemsList;
+
     public void MoveNewItem(Transform parent)
     {
-        float startValue = 0.3f;
-        float growthRate = 1.1f;
-        if (nextItemIndex < backgroundItemsList.Count)
-        {
-            TrashItems item = backgroundItemsList[nextItemIndex];
-            item.transform.parent = parent;
-            item.transform.DOLocalMove(Vector3.zero, 1f).SetDelay(startValue * Mathf.Pow(growthRate, 1)).OnComplete(() => { item.currentPos = transform.localPosition; });
-            item.transform.localScale = Vector3.one;
-            nextItemIndex++;
-        }
+        if (nextItemIndex >= backgroundItemsList.Count) return;
 
+        TrashItems item = backgroundItemsList[nextItemIndex];
+        if (item == null || parent == null) return;
+
+        item.transform.SetParent(parent);
+        item.transform.DOLocalMove(Vector3.zero, animationDuration)
+                     .SetDelay(itemSpacingDelay * Mathf.Pow(growthRate, 1))
+                     .OnComplete(() => item.currentPos = transform.localPosition);
+        item.transform.localScale = Vector3.one;
+
+        nextItemIndex++;
     }
+    #endregion
+
+    #region Utility
     public static List<T> GenerateRandomizedList<T>(List<T> sourceList, int targetCount)
     {
         List<T> resultList = new List<T>();
 
-        int sourceCount = sourceList.Count;
-
-        if (sourceCount == 0)
+        if (sourceList == null || sourceList.Count == 0)
         {
-            Debug.LogWarning("Source list is empty.");
+            Debug.LogWarning("Source list is null or empty.");
             return resultList;
         }
 
+        int sourceCount = sourceList.Count;
         int fullCopies = targetCount / sourceCount;
+
         for (int i = 0; i < fullCopies; i++)
         {
             resultList.AddRange(sourceList);
         }
+
         int remaining = targetCount - resultList.Count;
         for (int i = 0; i < remaining; i++)
         {
             resultList.Add(sourceList[Random.Range(0, sourceCount)]);
         }
+
         return resultList;
     }
+    #endregion
 }
