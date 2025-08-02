@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] public GameObject Player;
-    [SerializeField] public GameObject playerCamera;
-    [SerializeField] public Animator animator;
+    public GameObject Player;
+    public GameObject playerCamera;
+    public Animator animator;
     public float characterSpeed = 2f;
     public float laneTransitionSpeed = 0.3f;
     public float rotationEffect = 15f;
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(Player.name);
         playerPosition = Enums.PlayerPosition.center;
         playerState = Enums.PlayerState.running;
         InputManager.OnSwipeUp += Jump;
@@ -32,17 +33,17 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (run)
-        transform.Translate(Vector3.forward * characterSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * characterSpeed * Time.deltaTime);
     }
 
     public void keyboard()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             if (playerPosition == Enums.PlayerPosition.center)
             {
-                ChangeLane(rightLane, -rotationEffect - 10, -rotationEffect,0.5f);
+                ChangeLane(rightLane, -rotationEffect - 10, -rotationEffect, 0.5f);
                 playerPosition = Enums.PlayerPosition.right;
             }
             else if (playerPosition == Enums.PlayerPosition.left)
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
             SlideDown();
         }
     }
-    
+
 
     public void ChangeLane(float position, float rotate, float faceRotation, float cameraPos)
     {
@@ -121,4 +122,6 @@ public class PlayerController : MonoBehaviour
             playerPosition = Enums.PlayerPosition.center;
         }
     }
+
+    
 }

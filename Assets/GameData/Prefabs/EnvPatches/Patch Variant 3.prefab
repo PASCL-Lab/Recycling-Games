@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2f66f74f1d9a5ea48beb0036581bc18d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.020585127
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2f66f74f1d9a5ea48beb0036581bc18d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -74,6 +74,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patch Variant 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4750516829820258180, guid: ba8695869b2e6d74db3f29f3c3baada8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379243333510225214, guid: ba8695869b2e6d74db3f29f3c3baada8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8403395268725247669, guid: ba8695869b2e6d74db3f29f3c3baada8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -118,6 +126,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6708171338077967553, guid: ba8695869b2e6d74db3f29f3c3baada8, type: 3}
     - {fileID: 61228903236637786, guid: ba8695869b2e6d74db3f29f3c3baada8, type: 3}
+    - {fileID: 6812549207451169547, guid: ba8695869b2e6d74db3f29f3c3baada8, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8403395268725247669, guid: ba8695869b2e6d74db3f29f3c3baada8, type: 3}
       insertIndex: -1
