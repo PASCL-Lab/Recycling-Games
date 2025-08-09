@@ -1,15 +1,17 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Player;
+    GameObject activePlayer;
+    public List<GameObject> players;
     public GameObject playerCamera;
-    public Animator animator;
-    public float characterSpeed = 2f;
+    [HideInInspector] public Animator animator;
+    public float characterSpeed;
     public float laneTransitionSpeed = 0.3f;
     public float rotationEffect = 15f;
-    public bool run;
+    public bool run = false;
 
     float middleLane = 0f;
     float leftLane = -1.25f;
@@ -19,15 +21,34 @@ public class PlayerController : MonoBehaviour
     public Enums.PlayerPosition playerPosition;
     public Enums.PlayerState playerState;
 
+    private void Awake()
+    {
+        int character = PlayerPrefs.GetInt("selectedCharacter");
+        if (character == 0)
+        {
+
+            activePlayer = Instantiate(players[0], transform);
+            animator = activePlayer.GetComponent<Animator>();
+            
+        }
+        else
+        {
+
+            activePlayer = Instantiate(players[1], transform);
+            animator = activePlayer.GetComponent<Animator>();
+         
+        }
+    }
     void Start()
     {
-        Debug.Log(Player.name);
+
         playerPosition = Enums.PlayerPosition.center;
         playerState = Enums.PlayerState.running;
         InputManager.OnSwipeUp += Jump;
         InputManager.OnSwipeDown += SlideDown;
         InputManager.OnSwipeLeft += MoveLeft;
         InputManager.OnSwipeRight += MoveRight;
+
     }
 
     private void Update()
@@ -43,7 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             if (playerPosition == Enums.PlayerPosition.center)
             {
-                ChangeLane(rightLane, -rotationEffect - 10, -rotationEffect, 0.5f);
+                ChangeLane(rightLane, -rotationEffect - 10, -rotationEffect, 1f);
                 playerPosition = Enums.PlayerPosition.right;
             }
             else if (playerPosition == Enums.PlayerPosition.left)
@@ -56,7 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             if (playerPosition == Enums.PlayerPosition.center)
             {
-                ChangeLane(leftLane, rotationEffect + 10, rotationEffect, -0.5f);
+                ChangeLane(leftLane, rotationEffect + 10, rotationEffect, -1f);
                 playerPosition = Enums.PlayerPosition.left;
             }
             else if (playerPosition == Enums.PlayerPosition.right)
@@ -78,12 +99,12 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeLane(float position, float rotate, float faceRotation, float cameraPos)
     {
-        //playerCamera.transform.DOMoveX(cameraPos, laneTransitionSpeed);
-        Player.transform.DOMoveX(position, laneTransitionSpeed);
-        Player.transform.DORotate(new Vector3(0, faceRotation, rotate), laneTransitionSpeed / 2).OnComplete(
+        playerCamera.transform.DOMoveX(cameraPos, laneTransitionSpeed);
+        activePlayer.transform.DOMoveX(position, laneTransitionSpeed);
+        activePlayer.transform.DORotate(new Vector3(0, faceRotation, rotate), laneTransitionSpeed / 2).OnComplete(
             () =>
             {
-                Player.transform.DORotate(new Vector3(0, 0, 0), laneTransitionSpeed / 2);
+                activePlayer.transform.DORotate(new Vector3(0, 0, 0), laneTransitionSpeed / 2);
             });
     }
 
@@ -123,5 +144,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+    private void OnDestroy()
+    {
+        InputManager.OnSwipeUp -= Jump;
+        InputManager.OnSwipeDown -= SlideDown;
+        InputManager.OnSwipeLeft -= MoveLeft;
+        InputManager.OnSwipeRight -= MoveRight;
+    }
+
+
+
 }

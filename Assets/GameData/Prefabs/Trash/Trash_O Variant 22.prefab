@@ -58,9 +58,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -94,6 +91,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2310317730762504451, guid: d3d662fa91d9d4a4a906ca84fae5a106, type: 3}
+      propertyPath: itemNumber
+      value: 68
+      objectReference: {fileID: 0}
     - target: {fileID: 2374639031397143250, guid: d3d662fa91d9d4a4a906ca84fae5a106, type: 3}
       propertyPath: m_IsActive
       value: 0

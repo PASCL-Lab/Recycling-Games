@@ -58,9 +58,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -97,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 2647419015181193060, guid: 5c33e6cb90a0d6d41b7af7fce36b9f3e, type: 3}
       propertyPath: m_Name
       value: Trash_G Variant 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233719579859778997, guid: 5c33e6cb90a0d6d41b7af7fce36b9f3e, type: 3}
+      propertyPath: itemNumber
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 8328941324305114397, guid: 5c33e6cb90a0d6d41b7af7fce36b9f3e, type: 3}
       propertyPath: m_LocalPosition.x

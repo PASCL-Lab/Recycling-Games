@@ -27,7 +27,7 @@ public class ObjectPooling : MonoBehaviour
         for (int i = 0; i < activeObjects.Length; i++)
         {
             GameObject randomSection = GetRandomSelection();
-            randomSection.transform.position = new Vector3(SelectionPool[i].transform.position.x, 0, i * SelectionLength);
+            randomSection.transform.position = new Vector3(SelectionPool[i].transform.position.x, 0, i * SelectionLength+SelectionLength);
             randomSection.transform.parent = this.transform;
             randomSection.SetActive(true);
             activeObjects[i] = randomSection;

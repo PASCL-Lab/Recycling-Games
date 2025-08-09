@@ -5,15 +5,20 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameData/Scenes/Menu.unity
     guid: 14930182d01981145837caa7450e6f02
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameData/Scenes/GarbageSorting.unity
     guid: 30ea60065dfbb134f9efaad12494d0d1
-  - enabled: 0
+  - enabled: 1
+    path: Assets/GameData/Scenes/CharacterSelect.unity
+    guid: 640422dfd9c1aef4fae142287308b9be
+  - enabled: 1
     path: Assets/GameData/Scenes/MainGameplay.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/GameData/Scenes/SortingPhase.unity
+    guid: 37dcc8d4e7cbed142ad03a8f15fdc24b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_UseUCBPForAssetBundles: 0

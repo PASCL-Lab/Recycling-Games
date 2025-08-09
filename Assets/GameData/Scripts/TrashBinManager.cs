@@ -14,11 +14,12 @@ public class TrashBinManager : MonoBehaviour
     List<TrashItems> listOfTrashItems;
     public int maxBinCapacity = 4;
     public float distanceBetweenBins = 1.5f;
+    public bool phase = true;
 
     
     public void GenerateBins()
     {
-        if (GameManager.Instance == null || GameManager.Instance.pickUpManager == null)
+        if (GameManager.Instance == null )
         {
             Debug.LogError("GameManager or PickUpManager is null!");
             return;
@@ -40,14 +41,27 @@ public class TrashBinManager : MonoBehaviour
     
     void PopulatelistofTrashItems()
     {
-        foreach(GameObject obj in GameManager.Instance.pickUpManager.pickUpsList)
+        if (phase)
         {
-            TrashItems trash = obj.GetComponent<TrashItems>();
-            if (trash != null)
+            foreach (GameObject obj in GameManager.Instance.pickUpManager.pickUpsList)
             {
-                listOfTrashItems.Add(trash);
+                TrashItems trash = obj.GetComponent<TrashItems>();
+                if (trash != null)
+                {
+                    listOfTrashItems.Add(trash);
+                }
             }
         }
+        else
+        {
+            foreach (TrashItems obj in GameManager.Instance.itemManager.pickUpsList)
+            {
+                
+                listOfTrashItems.Add(obj);
+                
+            }
+        }
+        
     }
     void GenerateBins(List<TrashItems> listOfItems)
     {

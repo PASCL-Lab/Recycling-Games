@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public PickUpManager pickUpManager;
     public InputManager inputManager;
+    public ItemManager itemManager;
     public TrashBinManager trashBinManager;
     public ScoreManager scoreManager;
     public UIManager uIManager;
@@ -24,13 +25,22 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        pickUpManager.GenerateItems();
+        if (pickUpManager != null) {
+            pickUpManager.GenerateItems();
+        }
+        else
+        {
+            trashBinManager.phase = false;
+            itemManager.GenerateItems();
+        }
+        
     }
 
     public void SortComplete()
     {
         IncrementLevel();
-        scoreManager.CheckHighScore();
+        // Have to chnage this only for TIme being
+        //scoreManager.CheckHighScore();
         StartCoroutine(DelayedExecution());
     }
 

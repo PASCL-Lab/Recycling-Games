@@ -58,9 +58,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -133,6 +130,10 @@ PrefabInstance:
     - target: {fileID: 2499540750492662607, guid: 6b2b8eaa64be5c54da843e938d1cfc16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549727082611811303, guid: 6b2b8eaa64be5c54da843e938d1cfc16, type: 3}
+      propertyPath: itemNumber
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8474642559736484150, guid: 6b2b8eaa64be5c54da843e938d1cfc16, type: 3}
       propertyPath: m_Name

@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: trashType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8978849442305746090, guid: 3d5c43362f9fe8d4cbab66614706719b, type: 3}
+      propertyPath: itemNumber
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 9027768552725576706, guid: 3d5c43362f9fe8d4cbab66614706719b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

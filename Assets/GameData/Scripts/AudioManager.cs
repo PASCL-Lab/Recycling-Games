@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        PlayBGMusic(true);
+        //PlayBGMusic(false);
     }
 
     public void PlaySound(int index)

@@ -58,9 +58,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -96,7 +93,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 852054657189658782, guid: c8a04f4199767834a8febb842f76971b, type: 3}
       propertyPath: m_Name
-      value: Trash_R Variant Variant
+      value: Trash_R Variant 20
       objectReference: {fileID: 0}
     - target: {fileID: 3012345081271319439, guid: c8a04f4199767834a8febb842f76971b, type: 3}
       propertyPath: m_IsActive
@@ -141,6 +138,10 @@ PrefabInstance:
     - target: {fileID: 6699322846650018535, guid: c8a04f4199767834a8febb842f76971b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713339781449052751, guid: c8a04f4199767834a8febb842f76971b, type: 3}
+      propertyPath: itemNumber
+      value: 91
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

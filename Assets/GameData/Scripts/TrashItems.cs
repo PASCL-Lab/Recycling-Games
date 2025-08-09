@@ -73,7 +73,14 @@ public class TrashItems : MonoBehaviour
     public void MoveItem(TrashItems trash, TrashBins bin)
     {
         GameManager.Instance.scoreManager.IncrementScore(1);
-        GameManager.Instance.pickUpManager.MoveNewItem(transform.parent);
+        if (GameManager.Instance.trashBinManager.phase)
+        {
+            GameManager.Instance.pickUpManager.MoveNewItem(transform.parent);
+        }
+        else
+        {
+            GameManager.Instance.itemManager.MoveNewItem(transform.parent);
+        }
         trash.transform.parent = bin.trashPoint;
         trash.transform.DOLocalMove(Vector3.zero, 0.15f);
         trash.transform.DOScale(0, 0.2f);

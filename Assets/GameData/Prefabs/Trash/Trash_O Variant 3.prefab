@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 234687437225044839, guid: 24aa55c19d269184a9b610d3f9c22c81, type: 3}
+      propertyPath: itemNumber
+      value: 49
+      objectReference: {fileID: 0}
     - target: {fileID: 6176774021809346998, guid: 24aa55c19d269184a9b610d3f9c22c81, type: 3}
       propertyPath: m_Name
       value: Trash_O Variant 3
