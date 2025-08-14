@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
@@ -24,24 +25,27 @@ public class ItemSpawner : MonoBehaviour
     void Start()
     {
         laneXPositions = new float[] { lane1X, lane2X, lane3X };
-        SpawnOnPatch();
     }
 
-    public void SpawnOnPatch()
+    public void SpawnOnPatch(Transform targetPatch)
     {
+        //Debug.Log(laneXPositions.Length);
+        //if(laneXPositions.Length != 3)
+        //{
+        //    laneXPositions = new float[] { lane1X, lane2X, lane3X };
+        //}
         int obstaclesSpawned = 0;
         float z = -25f;
-
         while (z < patchLength)
         {
-            Vector3 spawnPos = new Vector3(laneXPositions[Random.Range(0,3)], 0f, transform.position.z + z);
+            Vector3 spawnPos = new Vector3(laneXPositions[Random.Range(0,3)], 0f, targetPatch.position.z + z);
 
             bool spawnObstacle = Random.value < 0.2f && obstaclesSpawned < maxObstacles;
 
             if (spawnObstacle)
             {
                 // Spawn obstacle
-                GameObject obs = Instantiate(obstaclePrefab[Random.Range(0, obstaclePrefab.Length)], spawnPos, Quaternion.identity, transform);
+                GameObject obs = Instantiate(obstaclePrefab[Random.Range(0, obstaclePrefab.Length)], spawnPos, Quaternion.identity, targetPatch);
                 obstaclesSpawned++;
                 Vector3 pickupPos= Vector3.one;
                 if ( obs.name.StartsWith("Hurdle")) 
@@ -53,7 +57,7 @@ public class ItemSpawner : MonoBehaviour
                 {
                     pickupPos = spawnPos + Vector3.up * 0.5f;
                 }
-                GameObject item = Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupPos, Quaternion.identity, transform);
+                GameObject item = Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupPos, Quaternion.identity, targetPatch);
                 TrashItems trash = item.GetComponent<TrashItems>();
                 item.name = "Trash" + trash.itemNumber;
                 item.transform.rotation = Quaternion.Euler(0, 180f, 0);
@@ -65,7 +69,7 @@ public class ItemSpawner : MonoBehaviour
             {
                 // Spawn regular pickup
                 Vector3 pickupPos = spawnPos + Vector3.up * 1f;
-                GameObject item = Instantiate(pickupPrefab[Random.Range(0,pickupPrefab.Length)], pickupPos, Quaternion.identity, transform);
+                GameObject item = Instantiate(pickupPrefab[Random.Range(0,pickupPrefab.Length)], pickupPos, Quaternion.identity, targetPatch);
                 TrashItems trash = item.GetComponent<TrashItems>();
                 item.name = "Trash" + trash.itemNumber;
                 item.transform.rotation = Quaternion.Euler(0, 180f, 0);

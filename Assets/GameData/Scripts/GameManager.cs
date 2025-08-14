@@ -39,11 +39,13 @@ public class GameManager : MonoBehaviour
     public void SortComplete()
     {
         IncrementLevel();
-        // Have to chnage this only for TIme being
-        //scoreManager.CheckHighScore();
+        scoreManager.CheckHighScore();
         StartCoroutine(DelayedExecution());
     }
-
+    public void SortToRun()
+    {
+        StartCoroutine(DelayedExecution());
+    }
     IEnumerator DelayedExecution()
     {
         yield return new WaitForSeconds(1.2f);

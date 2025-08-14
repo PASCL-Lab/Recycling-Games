@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Clips")]
     public List<AudioClip> audioClips;
 
+    private AudioSource loopingSFXSource;
+
     private void Awake()
     {
         AudioSource[] sources = GetComponents<AudioSource>();
@@ -26,7 +28,9 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //PlayBGMusic(false);
+        PlayBGMusic(true);
+        loopingSFXSource = gameObject.AddComponent<AudioSource>();
+        loopingSFXSource.loop = true;
     }
 
     public void PlaySound(int index)
@@ -57,14 +61,35 @@ public class AudioManager : MonoBehaviour
             sfxSource.mute = true;
     }
 
-    public void PlayBGMusic( bool loop = true)
+    public void PlayBGMusic(bool loop = true)
     {
-        if (bgMusicSource != null && ! bgMusicSource.mute)
+        if (bgMusicSource != null && !bgMusicSource.mute)
         {
             //bgMusicSource.clip = clip;
             bgMusicSource.loop = loop;
             bgMusicSource.enabled = true;
             bgMusicSource.Play();
+        }
+    }
+
+    public void PlaySoundLoop(int index)
+    {
+        if (index >= 0 && index < audioClips.Count)
+        {
+            loopingSFXSource.clip = audioClips[index];
+            loopingSFXSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Audio clip index out of range!");
+        }
+    }
+
+    public void StopSoundLoop()
+    {
+        if (loopingSFXSource.isPlaying)
+        {
+            loopingSFXSource.Stop();
         }
     }
 }

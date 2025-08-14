@@ -1,4 +1,5 @@
 
+using DG.Tweening;
 using UnityEngine;
 
 public class ObjectCollider : MonoBehaviour
@@ -8,16 +9,19 @@ public class ObjectCollider : MonoBehaviour
         if (other.gameObject.name.StartsWith("Trash"))
         {
             RunnerGameManager.Instance.objectPickupManager.AddPickup(other.gameObject);
+            AudioManager.Instance.PlaySound(9);
         }
         else if (other.gameObject.name.StartsWith("Slide"))
         {
             PlayerController player = RunnerGameManager.Instance.playerController;
             if (player != null)
             {
-                
-                    player.run = false;
-                    player.animator.SetTrigger("FallBack");
-                
+                AudioManager.Instance.PlaySound(11);
+                player.run = false;
+                RunnerGameManager.Instance.playable = false;
+                player.animator.SetTrigger("FallBack");
+                RunnerGameManager.Instance.uiManager.losePanel.SetActive(true);
+
             }
         }
         else if (other.gameObject.name.StartsWith("Hurdle"))
@@ -25,13 +29,23 @@ public class ObjectCollider : MonoBehaviour
             PlayerController player = RunnerGameManager.Instance.playerController;
             if (player != null)
             {
-                
-                    player.run = false;
-                    player.animator.SetTrigger("FallBack");
-                
+                AudioManager.Instance.PlaySound(11);
+                player.run = false;
+                RunnerGameManager.Instance.playable = false;
+                player.animator.SetTrigger("FallBack");
+                RunnerGameManager.Instance.uiManager.losePanel.SetActive(true);
+
             }
         }
-        
+        else if (other.gameObject.name.StartsWith("Factory")) 
+        {
+            PlayerController player = RunnerGameManager.Instance.playerController;
+            player.gameObject.transform.DORotate(new Vector3(0, -90f, 0), 1f);
+            player.characterSpeed = 5f;
+            RunnerGameManager.Instance.SortItems();
+            AudioManager.Instance.PlaySound(10);
+        }
+
 
     }
 }

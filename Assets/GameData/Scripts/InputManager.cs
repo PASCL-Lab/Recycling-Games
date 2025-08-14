@@ -14,9 +14,11 @@ public class InputManager : MonoBehaviour
     public static event SwipeAction OnSwipeLeft;
     public static event SwipeAction OnSwipeRight;
 
+
     void Update()
     {
-        if (Input.touchCount > 0)
+        
+        if (Input.touchCount > 0 && RunnerGameManager.Instance.playable)
         {
             Touch touch = Input.GetTouch(0);
 

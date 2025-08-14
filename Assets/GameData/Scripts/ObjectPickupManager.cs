@@ -22,6 +22,10 @@ public class ObjectPickupManager : MonoBehaviour
         gameObject.SetActive(false);
         NumberOfitems += 1;
         itemText.text = "Items: " + NumberOfitems;
+        //if (NumberOfitems % 40 == 0)
+        //{
+        //    RunnerGameManager.Instance.objectPooling.ReplaceThirdPatchWithFactory();
+        //}
     }
 
 }

@@ -27,14 +27,18 @@ public class PlayerController : MonoBehaviour
         if (character == 0)
         {
 
-            activePlayer = Instantiate(players[0], transform);
+            activePlayer = Instantiate(players[0],transform);
+            activePlayer.transform.localPosition = new Vector3(-3.5f, 0, -1.5f);
+            activePlayer.transform.rotation = Quaternion.Euler(0, 120f, 0);
             animator = activePlayer.GetComponent<Animator>();
             
         }
         else
         {
 
-            activePlayer = Instantiate(players[1], transform);
+            activePlayer = Instantiate(players[1],transform);
+            activePlayer.transform.localPosition = new Vector3(-3.5f, 0, -1.5f);
+            activePlayer.transform.rotation = Quaternion.Euler(0, 120f, 0);
             animator = activePlayer.GetComponent<Animator>();
          
         }
@@ -57,6 +61,18 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.forward * characterSpeed * Time.deltaTime);
     }
 
+    public void MoveCamera()
+    {
+        playerCamera.transform.DORotate(new Vector3(15, 0, 0), 6f).SetEase(Ease.Linear).SetDelay(2);
+        playerCamera.transform.DOLocalMove(new Vector3(0, 4, -5), 2f).SetDelay(8);
+    }
+
+    public void StartRunning()
+    {
+        animator.SetTrigger("Run");
+        activePlayer.transform.DORotate(Vector3.zero, 2f);
+        activePlayer.transform.DOLocalMove(Vector3.zero, 2f).OnComplete(() => { run = true; RunnerGameManager.Instance.playable = true; });
+    }
     public void keyboard()
     {
 

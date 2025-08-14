@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class TrashBinManager : MonoBehaviour
@@ -97,7 +98,15 @@ public class TrashBinManager : MonoBehaviour
         MoveTheQueue(queueOfBins);
         if (queueOfBins.Count == 0)
         {
-            GameManager.Instance.SortComplete(); 
+            string sceneName = SceneManager.GetActiveScene().name;
+            if (sceneName.Equals("SortingPhase"))
+            {
+                GameManager.Instance.SortToRun();
+            }
+            else
+            {
+                GameManager.Instance.SortComplete();
+            }
         }
         else
         {

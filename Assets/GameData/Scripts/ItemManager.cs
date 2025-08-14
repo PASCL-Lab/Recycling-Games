@@ -20,7 +20,6 @@ public class ItemManager : MonoBehaviour
     public  List<TrashItems> pickUpsList;
     public static  List<int> itemlist;
     private List<TrashItems> backgroundItemsList;
-    private int itemCount = 10;
     private int itemIndex = 0;
     private int nextItemIndex = 0;
     private const float initialYPosition = 5f;
@@ -69,7 +68,7 @@ public class ItemManager : MonoBehaviour
 
     private void SetUI()
     {
-        itemNumber.text = $"Items\n{itemCount}";
+        itemNumber.text = $"Items\n{itemlist.Count}";
     }
 
 
