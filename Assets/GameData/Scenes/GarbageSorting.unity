@@ -3284,8 +3284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e772b91244c6a41a3fa6031c9c1dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpManager: {fileID: 1378259522}
+  garbageItemManager: {fileID: 1378259522}
   inputManager: {fileID: 0}
+  itemManager: {fileID: 0}
   trashBinManager: {fileID: 833210217}
   scoreManager: {fileID: 578699793}
   uIManager: {fileID: 1888902172}
@@ -3960,13 +3961,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2904595, y: -0.21828575, z: 0.13906334, w: 0.9212198}
+  m_LocalRotation: {x: -0.033549484, y: -0.20233817, z: 0.07555896, w: 0.97581995}
   m_LocalPosition: {x: 0, y: 0.3281691, z: 5.088448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 330585546}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: -2, y: -23.591, z: 9.273}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4740,7 +4741,7 @@ MonoBehaviour:
   m_text: Next Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 547dcfa7ac61eab42a83fa017acfbe50, type: 2}
-  m_sharedMaterial: {fileID: 7745857337120327236, guid: 710a8a06e574b374197995508cfade02, type: 2}
+  m_sharedMaterial: {fileID: 849864143937426353, guid: 547dcfa7ac61eab42a83fa017acfbe50, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4803,7 +4804,7 @@ MonoBehaviour:
   m_margin: {x: 0.35743332, y: 0.20362377, z: -1.0721817, w: 0.20363098}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &472420366
@@ -7640,6 +7641,7 @@ MonoBehaviour:
   hazardousBinPrefab: {fileID: 1015226049010834702, guid: 5279746363341c64aa5229794820e9bb, type: 3}
   maxBinCapacity: 4
   distanceBetweenBins: 1.5
+  phase: 1
 --- !u!224 &838323903 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6273654811203769527, guid: 65761570a353a4a67bec65889d5d4e47, type: 3}
@@ -12306,7 +12308,7 @@ MonoBehaviour:
   m_text: SORTED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 547dcfa7ac61eab42a83fa017acfbe50, type: 2}
-  m_sharedMaterial: {fileID: 7745857337120327236, guid: 710a8a06e574b374197995508cfade02, type: 2}
+  m_sharedMaterial: {fileID: 849864143937426353, guid: 547dcfa7ac61eab42a83fa017acfbe50, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12369,7 +12371,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1336077537
@@ -12675,7 +12677,7 @@ GameObject:
   - component: {fileID: 1378259523}
   - component: {fileID: 1378259522}
   m_Layer: 0
-  m_Name: PickUpManager
+  m_Name: GarbageItemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12718,8 +12720,6 @@ MonoBehaviour:
   - {fileID: 417787788}
   - {fileID: 1982398601}
   trashItemLibrary: {fileID: 11400000, guid: d9bb2d2ef401e284ea9727e13170445a, type: 2}
-  itemNumber: {fileID: 1583423056}
-  levelNo: {fileID: 470201376}
   pickUpsList: []
 --- !u!4 &1378259523
 Transform:
@@ -14440,7 +14440,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 547dcfa7ac61eab42a83fa017acfbe50, type: 2}
-  m_sharedMaterial: {fileID: 7745857337120327236, guid: 710a8a06e574b374197995508cfade02, type: 2}
+  m_sharedMaterial: {fileID: 849864143937426353, guid: 547dcfa7ac61eab42a83fa017acfbe50, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14503,7 +14503,7 @@ MonoBehaviour:
   m_margin: {x: 0.35743332, y: 0.20362377, z: -1.0721817, w: 0.20363098}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1609473486
@@ -17416,6 +17416,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winPanel: {fileID: 1000036316}
   losePanel: {fileID: 1171914852}
+  topRunText: {fileID: 0}
+  itemNumber: {fileID: 1583423056}
+  levelNo: {fileID: 470201376}
+  funFactsText: {fileID: 0}
+  funfacts: []
+  slider: {fileID: 0}
+  valueText: {fileID: 0}
 --- !u!1 &1893833445
 GameObject:
   m_ObjectHideFlags: 0

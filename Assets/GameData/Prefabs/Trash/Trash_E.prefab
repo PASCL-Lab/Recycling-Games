@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1121199096501731288}
   m_Layer: 0
   m_Name: Trash_E
-  m_TagString: Untagged
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,10 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trashType: 3
   itemNumber: 0
-  interactable: 0
-  Pop: {fileID: 0}
   itemCollider: {fileID: 1121199096501731288}
   returnJumpOffset: 0.5
+  currentPos: {x: 0, y: 0, z: 0}
 --- !u!65 &1121199096501731288
 BoxCollider:
   m_ObjectHideFlags: 0

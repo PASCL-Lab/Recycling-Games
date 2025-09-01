@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6421504436828465905}
   m_Layer: 0
   m_Name: Hurdle8
-  m_TagString: Untagged
+  m_TagString: Hurdle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
