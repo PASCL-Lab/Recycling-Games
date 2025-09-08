@@ -58,7 +58,7 @@ You'll need to have *Unity Hub* and *Unity version 2022.3.62f1* installed. The p
 * **Main Runner Game (Recycle Dash):** Open Assets/GameData/Scenes/LoadingScreen.unity.
 * **Standalone Sorting Game (Recycle Rush):** Open Assets/GameData/Scenes/Menu.unity.
 
-⚠️ Important: Ensure that the scenes in the Build Settings are added and ordered exactly as listed below for both games.
+⚠️ Important: Ensure that the scenes in the Build Settings are added and ordered exactly as listed below in the build section for both games.
 
 ---
 
