@@ -1,116 +1,76 @@
-# Recycling-Games
+# Recycling Games
 
+> Two Unity-based educational mobile games that teach players about recycling and waste sorting.
 
-<p>
-  <img src="Assets/GameData/UI/Recycle Dash Game Logo.png" alt="Recycle Dash Logo" width="200"/>
-  <img src="Assets/GameData/UI/Recycle_Rush_Logo.png" alt="Recycle Rush Logo" width="240"/>
-</p>
+## Overview
 
+Recycling Games is a Unity project from PASCL Lab that bundles two complementary educational mobile games focused on recycling and waste management. **Recycle Dash** is an endless runner in which players collect trash while dodging obstacles and then sort what they have collected, while **Recycle Rush** is a standalone drag-and-drop sorting game where players place items into the correct recycling bins. The project is intended for educators, researchers, and players who want to combine engaging gameplay with environmental awareness, and it integrates with PlayFab for cloud-backed leaderboards.
 
-[![Unity Version](https://img.shields.io/badge/Unity-2022.3.62f1-blue)](https://unity.com/) 
+## Features
 
-*Recycling-Games* is a Unity project that features two distinct, engaging games aimed at teaching players about recycling and waste management.
+- Two distinct game modes (Recycle Dash endless runner, Recycle Rush sorting puzzle)
+- Drag-and-drop item-to-bin sorting mechanics teaching real recycling categories
+- Character selection and multi-scene gameplay flow
+- PlayFab integration for online high-score leaderboards
+- Built for Android with PlayFab cloud sync
+- Custom audio manager, UI toasts, and reusable prefabs
 
-* Recycle Dash: An *endless runner* where players collect trash items while navigating through obstacles. And after collecting a certain number of items the player has to sort the items.
-* Recycle Rush: A *drag-and-drop sorting game* where players must sort the items into the correct recycling bins.
+## Tech Stack
 
-This project combines fun gameplay with educational content to promote environmental awareness.
+- Unity 2022.3.62f1 (LTS)
+- C# (MonoBehaviour-based gameplay scripts)
+- PlayFab SDK for authentication and leaderboards
+- TextMesh Pro, Toast UI, Mesh Optimizer, and standard Unity asset packages
+- Android build target
 
----
-
-## Table of Contents
-
--   [Getting Started](#-getting-started)
--   [How to Play](#-how-to-play)
--   [PlayFab Integration](#-playfab-integration)
--   [Building for Android](#-building-for-android)
--   [License](#-license)
-
----
-
-## 🚀 Getting Started
-
-To get a copy of the project up and running on your local machine, follow these steps.
+## Getting Started
 
 ### Prerequisites
 
-You'll need to have *Unity Hub* and *Unity version 2022.3.62f1* installed. The project can be opened in other Unity versions as well, but it is recommended to use the original version to avoid potential complications.
+- Unity Hub
+- Unity Editor **2022.3.62f1** (other versions may work but are not guaranteed)
+- Android Build Support module (for producing APKs)
+- A PlayFab account with two titles (one for Recycle Dash, one for Recycle Rush) and a `High_Score` Legacy Leaderboard on each
 
 ### Installation
 
-1.  *Clone the repository:*
-    bash
-    git clone [https://github.com/PASCL-Lab/Recycling-Games.git](https://github.com/PASCL-Lab/Recycling-Games.git)
-    
-2.  *Open the project in Unity:*
-    * Open *Unity Hub*.
-    * Click *Add* and select the folder where you cloned the project.
-    * Unity will handle any necessary upgrades or downgrades.
-3.  *Verify dependencies:*
-    * Ensure all required packages are installed. Check the Packages/manifest.json file to see if anything is missing.
+```bash
+git clone https://github.com/PASCL-Lab/Recycling-Games.git
+```
 
----
+Then open the cloned `Recycling-Games` folder in Unity Hub using Unity 2022.3.62f1. Unity will import assets and resolve the packages listed in `Packages/manifest.json` automatically.
 
-## 🎮 How to Play
+### Configuration
 
-### Starting the Games
+In Unity, open `Assets/PlayFabSDK/Shared/Public/Resources/PlayFabSharedSettings` and set the appropriate PlayFab Title ID before building each game (Dash Title ID for Recycle Dash, Rush Title ID for Recycle Rush). To rename the leaderboard, update the `StatisticName` field in `ScoreManager.cs`.
 
-* **Main Runner Game (Recycle Dash):** Open Assets/GameData/Scenes/LoadingScreen.unity.
-* **Standalone Sorting Game (Recycle Rush):** Open Assets/GameData/Scenes/Menu.unity.
+### Running / Usage
 
-⚠️ Important: Ensure that the scenes in the Build Settings are added and ordered exactly as listed below in the build section for both games.
+- **Recycle Dash:** open `Assets/GameData/Scenes/LoadingScreen.unity` and press Play, or build with the scene order: `LoadingScreen`, `CharacterSelect`, `MainGameplay`, `SortingPhase`.
+- **Recycle Rush:** open `Assets/GameData/Scenes/Menu.unity` and press Play, or build with the scene order: `Menu`, `GarbageSorting`.
 
----
+To produce an Android APK, switch the build target to Android in Build Settings, confirm the scene order above, and use **File -> Build Settings -> Build**.
 
-## ☁ PlayFab Integration
+## Project Structure
 
-Both games use *PlayFab* for storing player scores and managing leaderboards.
+```
+.
+├── Assets/
+│   ├── GameData/             # Scenes, UI, and game-specific assets for both games
+│   ├── PlayFabSDK/           # PlayFab integration and shared settings
+│   ├── Low Poly 3D Garbage & Tow Trucks/  # Vehicle and trash 3D assets
+│   ├── Standard Assets/      # Unity standard assets
+│   ├── TextMesh Pro/         # Text rendering
+│   └── Toast UI/             # In-game toast notification system
+├── Packages/                 # Unity Package Manager manifest and lock file
+├── ProjectSettings/          # Unity project configuration (Unity 2022.3.62f1)
+└── Report.pdf                # Project report
+```
 
-### 1. Create a PlayFab Account
+## License
 
-* Go to the [PlayFab website](https://playfab.com/) and sign up for an account.
+This project is the intellectual property of **PASCL Lab**. All rights reserved.
 
-### 2. Create New Titles
+Unauthorized copying, distribution, modification, or use of this codebase, in whole or in part, is strictly prohibited without prior written permission from PASCL Lab.
 
-* Within your PlayFab account, create two separate titles (games) for each game:
-    * Recycle Dash (for the runner game)
-    * Recycle Rush (for the sorting game)
-
-### 3. Create Leaderboards
-
-* For each title, create a *Legacy Leaderboard* table.
-* The leaderboard must be named **High_Score** to work with the default code. If you wish to change the name, you must also update the StatisticName field in the ScoreManager.cs script.
-
-### 4. Configure Unity
-
-* In Unity, navigate to Assets/PlayFabSDK/Shared/Public/Resources.
-* Click on **PlayFabSharedSettings**.
-* Enter the correct Title IDs for each game:
-    * Recycle Dash → Dash Title ID
-    * Recycle Rush → Rush Title ID
-
-### 5. Verify Integration
-
-* Test the game in Unity to ensure scores are correctly being saved to and retrieved from PlayFab.
-
----
-
-## ⚙ Building for Android
-
-### Recycle Dash
-
-* Ensure the correct Title ID is set in the PlayFabSharedSettings.
-* Include the following scenes in your build settings in this order:
-    1.  LoadingScreen
-    2.  CharacterSelect
-    3.  MainGameplay
-    4.  SortingPhase
-
-### Recycle Rush
-
-* Ensure the correct Title ID is set in the PlayFabSharedSettings.
-* Include the following scenes in your build settings in this order:
-    1.  Menu
-    2.  GarbageSorting
-
----
+© 2026 PASCL Lab. All rights reserved.
